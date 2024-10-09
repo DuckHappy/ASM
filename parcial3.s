@@ -120,7 +120,8 @@ invertir:
 imprimir3:
     addi a1,a1,-1      # Retrocedo en a1 (último carácter de la cadena)
     lb a0,0(a1)        # Cargo el carácter actual en a0
-    sb a3,0(a1)
+    sb a3,0(a2)
+    addi a2,a2,1
     li a7,11           # Código de syscall para imprimir un solo carácter
     ecall              # Llamada al sistema para imprimir el carácter
     bne a1,x0,imprimir3  # Si no es el fin de la cadena, repito hasta imprimir toda la cadena
