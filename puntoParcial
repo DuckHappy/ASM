@@ -1,0 +1,46 @@
+#te dan  una cadena que tiene que pasar la minusculas a mayusculas y mayusculas a minusculas. tiene que funcionar para cualquier cadena
+#.dato
+#texto: .string "hOlA mUNDO"
+#.texto(solo te dan este codido)
+#resultado esperado-----> HoLa Mundo
+
+.data
+    texto: .string "hOlA mUNDO"
+
+.text
+    la x2,texto
+    li x6,96
+    li a7,11
+
+loop:
+    lb x3,0(x2)
+    li x5,32
+    beq x3,x5,siguiente  
+    beqz x3,end
+    
+    blt x6,x3,mayus  #96<x3
+    blt x3,x6,minus  #x3<96
+    
+    j loop
+    
+mayus:
+    addi a0,x3,-32
+    ecall
+    addi x2,x2,1
+    j loop
+
+minus:
+    addi a0,x3,32
+    ecall
+    addi x2,x2,1
+    j loop
+    
+siguiente:
+    addi a0,x3,0
+    ecall
+    addi x2,x2,1
+    j loop
+    
+end:
+    li a7,10
+    ecall
